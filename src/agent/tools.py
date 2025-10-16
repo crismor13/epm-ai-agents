@@ -2,7 +2,7 @@ from langchain.tools import tool
 from langchain_openai import OpenAIEmbeddings
 from langchain_community.vectorstores import FAISS
 
-from ..core.config import EPM_URL, OPENAI_API_KEY
+from ..core.config import EPM_URL, OPENAI_API_KEY, FAISS_INDEX_PATH
 from ..scraping.epm_scraper import fetch_interrupciones_html
 from ..scraping.epm_parser import parse_interrupciones
 
@@ -27,7 +27,7 @@ def buscar_en_guias_epm(pregunta: str) -> str:
     embeddings = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
 
     # Carga el índice local de FAISS (nuestra 'memoria')
-    vector_store = FAISS.load_local("faiss_index", embeddings, allow_dangerous_deserialization=True)
+    vector_store = FAISS.load_local(FAISS_INDEX_PATH, embeddings, allow_dangerous_deserialization=True)
 
     # Busca los documentos más relevantes para la pregunta
     retriever = vector_store.as_retriever(search_kwargs={"k": 3}) # k=3 trae los 3 chunks más relevantes
