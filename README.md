@@ -96,8 +96,7 @@ pip install -r requirements.txt
 
 ### 4. Configurar Variables de Entorno
 
-Crea un archivo llamado `.env` en la raíz del proyecto.  
-Puedes copiar el contenido de `.env.example` (si existe) o añadir la siguiente línea:
+Crea un archivo llamado `.env` en la raíz del proyecto y añadir la siguiente línea:
 
 ```bash
 # .env
@@ -105,18 +104,6 @@ OPENAI_API_KEY="sk-..."
 ```
 
 Reemplaza `sk-...` con tu clave de API de OpenAI.
-
-### 5. Preparar la Base de Conocimiento (RAG)
-
-Coloca todos los documentos PDF de las guías de EPM dentro de la carpeta `docs/`.
-
-Ejecuta el script de ingestión para procesar los documentos y crear la base de datos vectorial:
-
-```bash
-python -m src.rag.ingest_rag_data
-```
-
-Este comando creará una carpeta `faiss_index` en la raíz del proyecto.
 
 ---
 
